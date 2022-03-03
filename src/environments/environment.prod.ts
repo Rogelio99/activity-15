@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  fruitApiUrl: 'https://www.fruityvice.com/api'
 };
