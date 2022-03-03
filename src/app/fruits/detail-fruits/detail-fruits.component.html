@@ -1,1 +1,16 @@
-<p>detail-fruits works!</p>
+<app-nav-bar></app-nav-bar>
+<div class="container-fluid">
+  <div class="flex-xl-nowrap">
+    <h2>Detalle de fruta: {{name}}</h2>
+    <form [formGroup]="formCheckout">
+      <div class="in-line">
+        <input class="form-control input-group" type="text" name="id" id="id" formControlName="id">
+        <input class="form-control input-group" type="text" name="name" id="name" formControlName="name" readonly>
+        <input class="form-control input-group" type="text" name="family" id="family" formControlName="family" readonly>
+        <input class="form-control input-group" type="text" name="genus" id="genus" formControlName="genus" readonly>
+        <input class="form-control input-group" type="text" name="order" id="order" formControlName="order" readonly>
+        <input class="form-control input-group" type="text" name="nutritions" id="nutritions" formControlName="nutritions" readonly>
+      </div>
+    </form>
+  </div>
+</div>

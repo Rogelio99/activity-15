@@ -2,23 +2,40 @@
 <div class="container-fluid">
   <div class="flex-xl-nowrap">
     <h2>Frutas</h2>
+    <form [formGroup]="formCheckout" (ngSubmit)="onSubmit()">
+      <p class="text-danger">{{error}}</p>
+      <div class="in-line">
+        <input class="form-control input-group" type="text" name="search" id="search" formControlName="search" placeholder="Escribe lo que quieres buscar">
+        <select class="form-control input-group" name="filter" id="filter" formControlName="filter" >
+          <option value="" disabled selected hidden>Elige un filtro</option>
+          <option value="family">Familia</option>
+          <option value="genus">Genero</option>
+          <option value="order">Orden</option>
+        </select>
+        <button class="btn btn-primary input-button" type="submit">Buscar</button>
+        <button class="btn btn-warning" type="button" (click)="onReset()">Resetear</button>
+      </div>
+    </form>
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Id de usuario</th>
-          <th>Titulo</th>
-          <th>Descripcion</th>
+          <th scope="col">Nombre</th>
+          <th>Familia</th>
+          <th>Genero</th>
+          <th>Orden</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let fruit of actualFruits">
+        <tr *ngFor="let fruit of actualFruits" (click)="detail(fruit)">
           <td>{{fruit.id}}</td>
           <td>{{fruit.name}}</td>
+          <td>{{fruit.family}}</td>
+          <td>{{fruit.genus}}</td>
+          <td>{{fruit.order}}</td>
         </tr>
       </tbody>
       <tfoot>
-        <tr>
           <td colspan="5">
             <div class="pagination-posts">
               <button class="btn btn-primary paginator" (click)="previousPage()" [disabled]="page === 0">Anterior</button>
@@ -27,7 +44,7 @@
             </div>
 
           </td>
-        </tr>
+
       </tfoot>
     </table>
   </div>

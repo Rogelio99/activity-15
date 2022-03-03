@@ -9,7 +9,7 @@ export class FruitServiceService {
   constructor(private http: HttpClient) { }
 
   getFruits(): Observable<any> {
-    return this.http.get<any>('/api/fruit/all');
+    return this.http.get<any>('/api/fruit/all')
   }
 
   getFruitByFilter(filter: string , value: string): Observable<any>{

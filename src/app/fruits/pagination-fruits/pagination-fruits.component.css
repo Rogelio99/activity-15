@@ -1,0 +1,35 @@
+.foot {
+  display: inline;
+  justify-content: center;
+  align-items: center;
+  margin-right: 23%;
+}
+
+.paginator {
+  display: inline;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2%;
+}
+
+tr {
+  cursor: pointer;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+.in-line {
+  display: flex;
+}
+
+.input-group {
+  width: 25%;
+  margin-right: .5%;
+}
+
+.input-button {
+  width: 25%;
+  margin-left: 40%;
+}
