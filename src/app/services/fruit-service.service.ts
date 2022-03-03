@@ -1,40 +1,18 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment'
-const axios = require('axios')
-const apiUrl = environment.fruitApiUrl;
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FruitServiceService {
+  constructor(private http: HttpClient) { }
 
-  async getFruits() {
-    return await axios.get(`${apiUrl}/fruit/all`)
-    .then((response: { data: any}) => response.data)
-    .catch((error: any) => {
-      console.log(error);
-      return error;
-    });
+  getFruits(): Observable<any> {
+    return this.http.get<any>('/api/fruit/all');
   }
 
-  async getFruitByFilter(filter: number , value: string) {
-    let filtered = '';
-    switch (filter) {
-      case 1:
-        filtered = 'family';
-        break;
-      case 2:
-        filtered = 'genus';
-        break;
-      case 3:
-        filtered = 'order';
-        break;
-      default:
-        filtered = '';
-        break;
-    }
-    return await axios.get(`${apiUrl}/fruit/${filtered}/${value}`)
-    .then((response: { data: any}) => response.data)
-    .catch((error: any) => error);
+  getFruitByFilter(filter: string , value: string): Observable<any>{
+    return this.http.get<any>('/api/fruit/' + filter + '/' + value);
   }
 }
