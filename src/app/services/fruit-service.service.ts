@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment'
-import { HttpClient } from '@angular/common/http';
+const axios = require('axios')
 const apiUrl = environment.fruitApiUrl;
 
 @Injectable({
@@ -8,13 +8,16 @@ const apiUrl = environment.fruitApiUrl;
 })
 export class FruitServiceService {
 
-  constructor(private http: HttpClient) { }
-
-  getFruits() {
-    return this.http.get(`${apiUrl}/fruit/all`);
+  async getFruits() {
+    return await axios.get(`${apiUrl}/fruit/all`)
+    .then((response: { data: any}) => response.data)
+    .catch((error: any) => {
+      console.log(error);
+      return error;
+    });
   }
 
-  getFruitByFilter(filter: number , value: string) {
+  async getFruitByFilter(filter: number , value: string) {
     let filtered = '';
     switch (filter) {
       case 1:
@@ -30,6 +33,8 @@ export class FruitServiceService {
         filtered = '';
         break;
     }
-    return this.http.get(`${apiUrl}/fruit/${filtered}/${value}`);
+    return await axios.get(`${apiUrl}/fruit/${filtered}/${value}`)
+    .then((response: { data: any}) => response.data)
+    .catch((error: any) => error);
   }
 }
